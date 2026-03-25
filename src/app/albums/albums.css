@@ -1,0 +1,39 @@
+
+.mainAlbumes{
+  display: flex;
+  flex-direction: column;
+}
+.cosas{
+  display :flex;
+  flex-direction: row;
+  margin-top: 15px;
+  justify-content: center;
+}
+.input{
+  width: 130px;
+  height: 15px;
+}
+.boton{
+  width: 70px;
+  height: 20px;
+}
+.body {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;   
+}
+.body img {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border: 2px solid black;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.body img:hover {
+  
+  transform: scale(1.05);
+  cursor: pointer; 
+}
+.body{
+  margin-top: 30px;
+}
