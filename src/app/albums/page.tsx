@@ -3,7 +3,7 @@ import { useState } from "react";
 import './albums.css'
 import Link from "next/link";
 import { Album } from "@/type/album";
-import { albumById, albumByName } from "@/lib/api";
+import { albumByArtistName } from "@/lib/api";
 import { AlbumCard } from "@/components/AlbumCard";
 
 const Albumes=()=>{
@@ -11,13 +11,13 @@ const Albumes=()=>{
     const [buscar,setBuscar]=useState<string>("");
     const [album,setAlbum]=useState<Album[]|null>(null);
 
-    const enseñarAlbum = async ()=>{
-        const res=await albumByName(buscar);
-        setAlbum(res?.data.results);
-        console.log(res?.data?.results)
-    }
-
-    //const filtrar=album ? album.filter((c)=>c.collectionName.toLowerCase().includes(buscar.toLowerCase())):null;
+    const enseñarAlbum = async () => {
+    const res = await albumByArtistName(buscar);
+    const soloAlbumes = res?.data.results.filter(
+        (e: Album) => e.trackCount >= 4
+    );
+    setAlbum(soloAlbumes);
+};
 
     return(
         <>

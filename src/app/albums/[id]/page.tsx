@@ -7,14 +7,16 @@ import { useEffect, useState } from "react";
 import Link from "next/link"
 
 const InfoAlbum = ()=>{
-    const {id}:{id:string}=useParams();
+    const {id} = useParams();
     const [album,setAlbum]=useState<Album|null>(null);
 
     useEffect(()=>{
-        albumById(id).then((res)=>{
-            setAlbum(res?.data.results)
+        if(!id)return
+        albumById(String(id)).then((res)=>{
+            setAlbum(res?.data?.results[0])
         })
-    })
+    },[id])
+    console.log("p",album)
 
     if(!album) return <p>cargando...</p>
 
