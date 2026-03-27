@@ -2,6 +2,10 @@
 .mainAlbumes{
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  background-image: url("/1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .cosas{
   display :flex;
@@ -20,7 +24,8 @@
 .body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 40px;   
+  gap: 40px;
+  margin-top: 30px;  
 }
 .body img {
   width: 180px;
@@ -30,10 +35,24 @@
   transition: transform 0.3s, border-color 0.3s;
 }
 .body img:hover {
-  
   transform: scale(1.05);
   cursor: pointer; 
 }
-.body{
-  margin-top: 30px;
+.tituloAlbumes{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  margin-top: 10px;
+  font-size: 20;
+}
+.botonHome1{
+  width: 30px;
+  height: 30px;
+  margin-top: 20px;
+  margin-left: 40px;
+}
+.home1{
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
 }

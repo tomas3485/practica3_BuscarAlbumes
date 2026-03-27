@@ -5,6 +5,7 @@ import { Album } from "@/type";
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react";
 import Link from "next/link"
+import './dinamico.css'
 
 const InfoAlbum = ()=>{
     const {id} = useParams();
@@ -16,17 +17,23 @@ const InfoAlbum = ()=>{
             setAlbum(res?.data?.results[0])
         })
     },[id])
-    console.log("p",album)
-
     if(!album) return <p>cargando...</p>
 
     return(
         <div className="infoAlbum">
-            <h1>{album.collectionName}</h1>
-            <p>{album.artistName}</p>
-            {<img src={album.artworkUrl60}/>}
-            
-            <Link href="/albums">Volver</Link>
+            <div className="home2">
+                <Link href='/albums'>
+                    <button className="botonHome1">💾</button>
+                </Link></div>
+            <div className="bodyId">  
+                <div className="tituloAlbum">
+                    <h1>{album.collectionName}</h1>
+                </div>
+                <div className="artista">
+                    <p>Artista : {album.artistName}</p>
+                </div>
+                {<img src={album.artworkUrl100}/>}
+            </div> 
         </div>
     )
 }

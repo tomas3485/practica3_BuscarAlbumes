@@ -3,7 +3,7 @@ import { useState } from "react";
 import './albums.css'
 import Link from "next/link";
 import { Album } from "@/type/album";
-import { albumByArtistName } from "@/lib/api";
+import { getArtistByName,getAlbumsByArtistId } from "@/lib/api";
 import { AlbumCard } from "@/components/AlbumCard";
 
 const Albumes=()=>{
@@ -12,18 +12,25 @@ const Albumes=()=>{
     const [album,setAlbum]=useState<Album[]|null>(null);
 
     const enseñarAlbum = async () => {
-    const res = await albumByArtistName(buscar);
-    const soloAlbumes = res?.data.results.filter(
-        (e: Album) => e.trackCount >= 4
-    );
+    const artist = await getArtistByName(buscar);
+    if (!artist) return;
+
+    const results = await getAlbumsByArtistId(artist.artistId);
+    const soloAlbumes = results.filter((e: Album) => e.trackCount >= 4);
     setAlbum(soloAlbumes);
-};
+    };
 
     return(
         <>
             <div className="mainAlbumes">
-                <h1>Buscar Albumes</h1> 
-                <Link href='/'>Home</Link>
+                <div className="home1">
+                <Link href='/'>
+                    <button className="botonHome1">🏠</button>
+                </Link></div>
+                <div className="tituloAlbumes">
+                    <h1>Buscar Artista</h1> 
+                </div>
+                
                 <div className="cosas">
                     <input
                     className="input"

@@ -5,15 +5,13 @@ export const api = axios.create({
     timeout: 5000,
 })
 
-export const albumByArtistName = async (artist: string) => {
-    // Paso 1: buscar el artista
-    const artistRes = await api.get(`/search?term=${artist}&entity=musicArtist&limit=1`);
-    const artistId = artistRes.data.results[0]?.artistId;
-    if (!artistId) return null;
-
-    // Paso 2: buscar sus álbumes
-    const albumsRes = await api.get(`/lookup?id=${artistId}&entity=album&limit=20`);
-    return albumsRes;
+export const getArtistByName = async (artist: string) => {
+    const response = await api.get(`/search?term=${artist}&entity=musicArtist&limit=1`);
+    return response.data.results[0];
+}
+export const getAlbumsByArtistId = async (artistId: number) => {
+    const response = await api.get(`/lookup?id=${artistId}&entity=album&limit=20`);
+    return response.data.results;
 }
 export const albumById = async(id:string)=>{
     const response = await api.get(`/lookup?id=${id}`);

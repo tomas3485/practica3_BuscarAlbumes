@@ -1,0 +1,22 @@
+.bodyFav{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url("/1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.tituloFav{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  margin-top: 10px;
+  font-size: 20;
+}
+.body {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
+  margin-top: 30px;  
+  margin-left: 20px;
+}
